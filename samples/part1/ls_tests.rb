@@ -16,8 +16,8 @@ Dir.chdir("#{dir}/data")
 
 ############################################################################
 
-ls_output      = `ruby-ls`
-ruby_ls_output = `ls`
+ls_output      = `ls`
+ruby_ls_output = `ruby-ls`
 
 test_equal ls_output, ruby_ls_output, "Failed 'ls == ruby-ls'"
 # abort "Failed 'ls == ruby-ls'" unless ls_output == ruby_ls_output
@@ -69,6 +69,12 @@ puts "Test 7: OK"
 abort "Next step: add a test for ruby-ls -Z (an invalid switch)"
 
 puts "Test 8: OK"
+
+############################################################################
+
+abort "Next step: add a test for ruby-ls foo"
+
+puts "Test 9: OK"
 
 ############################################################################
 
