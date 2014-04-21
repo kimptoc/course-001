@@ -3,6 +3,14 @@
 
 require "open3"
 
+def test_equal(actual, expected, msg)
+	unless expected == actual
+		puts "Expected:#{expected}"
+		puts "Actual  :#{actual}"
+		abort msg
+	end
+end
+
 dir = File.dirname(__FILE__)
 Dir.chdir("#{dir}/data")
 
@@ -11,13 +19,18 @@ Dir.chdir("#{dir}/data")
 ls_output      = `ruby-ls`
 ruby_ls_output = `ls`
 
-abort "Failed 'ls == ruby-ls'" unless ls_output == ruby_ls_output
+test_equal ls_output, ruby_ls_output, "Failed 'ls == ruby-ls'"
+# abort "Failed 'ls == ruby-ls'" unless ls_output == ruby_ls_output
 
 puts "Test 1: OK"
 
 ############################################################################
 
-abort "Next step: add a test for ruby-ls foo/*.txt"
+ls_output      = `ruby-ls foo/*.txt`
+ruby_ls_output = `ls foo/*.txt`
+
+test_equal ls_output, ruby_ls_output, "Failed 'ls foo/*.txt == ruby-ls foo/*.txt'"
+# abort "Failed 'ls foo/*.txt == ruby-ls foo/*.txt'" unless ls_output == ruby_ls_output
 
 puts "Test 2: OK"
 

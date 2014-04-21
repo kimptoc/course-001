@@ -1,4 +1,24 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
+
 ## FIXME: Replace this code with a pure Ruby clone of the ls utility
-system("ls", *ARGV)
+#system("ls", *ARGV)
+
+pattern_part = "*"
+
+if ARGV && ARGV[0]
+	dir_part = File.dirname(ARGV[0])
+	# pattern_part = File.basename(ARGV[0])
+	# puts ARGV
+	pattern_part = ARGV
+	# puts File.dirname(ARGV[0])
+	# puts FileUtils.pwd
+	# Dir.chdir(dir_part)
+	# puts FileUtils.pwd
+end
+
+
+	# puts FileUtils.pwd
+	# puts Dir.glob(pattern_part)
+Dir.glob(pattern_part).each { |entry| puts entry }
